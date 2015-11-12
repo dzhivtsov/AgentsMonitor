@@ -1,0 +1,19 @@
+﻿@model AgentsMonitor.Web.Models.SettingsModel
+
+@{
+    ViewBag.Title = "Settings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Settings</h2>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <span class="glyphicon glyphicon-user"></span> User Identifier
+        </h3>
+    </div>
+    <div class="panel-body">
+        @Model.UserId
+    </div>
+</div>

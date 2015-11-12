@@ -1,0 +1,42 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Servers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div ng-app="agentsMonitorApp">
+    <div ng-controller="ServersListController" ng-cloak>
+        <div>
+            <button class="btn btn-link btn-block" ng-click="loadServers()">
+                <span class="glyphicon glyphicon-refresh"></span> Refresh servers list
+            </button>
+        </div>
+        <div class="list-group" cg-busy="serversPromise">
+            <a ng-click="showStatistics(server.ServerId)" ng-repeat="server in servers" ng-class="{active: server.ServerId == currentServer.ServerId}" class="list-group-item" href="#">
+                {{server.Name}} ({{server.MacAddress}})
+            </a>
+        </div>
+        <div class="panel panel-default" ng-show="spaceStatistics">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    Free space statistics for {{currentServer.Name}} ({{currentServer.MacAddress}})
+                </h3>
+            </div>
+            <div class="panel-body" cg-busy="spaceStatisticsPromise">
+                <div google-chart chart="spaceStatistics"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="~/Scripts/angular.min.js"></script>
+<script src="//www.google.com/jsapi"></script>
+<script src="~/Scripts/ng-google-chart.min.js"></script>
+<script src="~/Scripts/agentsMonitor.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+<script src="~/Scripts/angular-signalr-hub.min.js"></script>
+<script src="~/Scripts/angular-busy.min.js"></script>

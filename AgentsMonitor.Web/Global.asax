@@ -1,0 +1,1 @@
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="AgentsMonitor.Web.Global" Language="C#" %>

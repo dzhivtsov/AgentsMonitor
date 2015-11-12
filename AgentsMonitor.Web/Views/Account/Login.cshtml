@@ -1,0 +1,25 @@
+﻿@using Microsoft.Owin.Security
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("ExternalLogin", "Account", new { ViewBag.ReturnUrl }))
+{
+    @Html.AntiForgeryToken()
+    <div id="socialLoginList">
+        <p>
+            @foreach (AuthenticationDescription p in Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes())
+            {
+                <button id="@p.AuthenticationType" name="provider" type="submit"
+                        value="@p.AuthenticationType"
+                        title="Log in using your @p.Caption account"
+                        class="btn btn-default">
+                    @p.AuthenticationType
+                </button>
+            }
+        </p>
+    </div>
+}
